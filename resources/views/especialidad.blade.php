@@ -7,11 +7,11 @@
 @stop
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                <div class="card-header">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
                     <h5 class="card-title">Nueva Especialidad</h5>
                 </div>
                 <div class="card-body">
@@ -20,13 +20,15 @@
                         <input type="hidden" name="id" value="{{$especialidad->id}}">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" value="{{$especialidad->nombre}}" name="nombre" placeholder="Especialidad" required>
+                            <input type="text" class="form-control border-primary" id="nombre" value="{{$especialidad->nombre}}" name="nombre" placeholder="Especialidad" required>
                         </div>
-                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
-                </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
 @stop
