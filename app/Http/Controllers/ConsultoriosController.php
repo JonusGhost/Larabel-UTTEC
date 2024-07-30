@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Consultorios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ConsultoriosController extends Controller
 {
@@ -47,6 +48,8 @@ public function listAPI()
 
         $consultorio->numero = $req->numero;
         $consultorio->save();
+        Log::info('Consultorio agregado.');
+        
 
         return redirect()->route('consultorios');
     }
@@ -57,5 +60,6 @@ public function listAPI()
         $consultorio->delete();
 
         return redirect()->route('consultorios');
+        Log::info('Consultorio eliminado.');
     }
 }

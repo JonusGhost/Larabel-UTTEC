@@ -6,6 +6,7 @@ use App\Models\Pacientes;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
 class PacientesController extends Controller
 {
     public function index(Request $req)
@@ -46,7 +47,6 @@ class PacientesController extends Controller
         $paciente->apellido_materno = $req->app_mat;
         $paciente->telefono = $req->telefono;
         $paciente->save();
-
         return redirect()->route('pacientes');
     }
 

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+
 class PacienteController extends Controller
 {
     public function index(Request $req)
@@ -44,7 +45,7 @@ class PacienteController extends Controller
         $paciente->telefono = $req->telefono;
         $paciente->idusr = $user->id;
         $paciente->save();
-
+        
         return 'Ok';
     }
 

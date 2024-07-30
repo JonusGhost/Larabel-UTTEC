@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Especialidad;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\New_;
+use Illuminate\Support\Facades\Log;
 
 class EspecialidadController extends Controller
 {
@@ -54,6 +55,7 @@ class EspecialidadController extends Controller
         $especialidad->nombre = $req->nombre;
         $especialidad->estado = true;
         $especialidad->save();
+        Log::info('Especialidad agregada.');
 
         return redirect()->route('especialidades');
     }
@@ -88,7 +90,7 @@ class EspecialidadController extends Controller
     {
         $especialidad = Especialidad::find($req->id);
         $especialidad->delete();
-
+        Log::info('Especialidad eliminada.');
         return 'Ok, Eliminada';
     }
 }

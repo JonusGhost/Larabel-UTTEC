@@ -10,6 +10,8 @@ use App\Models\Doctor;
 use App\Models\Medicamentos;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Log;
+
 class CitaController extends Controller
 {
     public function index(Request $req)
@@ -27,6 +29,7 @@ class CitaController extends Controller
         $consultorios = Consultorios::all();
         $especialidades = Especialidad::all();
         return view('cita', compact('cita', 'doctor', 'consultorios', 'especialidades'));
+        Log::info('Cita agregada.');
     }
 
     public function indatender(Request $req)
@@ -61,12 +64,14 @@ class CitaController extends Controller
         $doctores = Doctor::all();
         $consultorios = Consultorios::all();
         return view('citas', compact('citas', 'especialidades', 'pacientes', 'doctores', 'consultorios'));
+        Log::info('Citas mostradas.');
     }
 
     public function listAPI()
     {
         $cita = Cita::all();
         return $cita;
+        Log::info('Citas mostradas.');
     }
     
     public function saveAPI (Request $req)
@@ -89,7 +94,7 @@ class CitaController extends Controller
         $cita->id_doctor         = $req->doc_id;
         $cita->id_especialidad   = $req->esp_id;
         $cita->save();
-
+        Log::info('Cita agregada.');
         return 'Ok';
     }
 
@@ -99,6 +104,8 @@ class CitaController extends Controller
         $cita->delete();
 
         return redirect()->route('cita');
+        Log::info('Cita eliminada.');
+        
     }
 
     public function deleteAPI (Request $req)

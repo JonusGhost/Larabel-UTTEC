@@ -7,6 +7,7 @@ use App\Models\Especialidad;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class DoctorController extends Controller
 {
@@ -56,7 +57,9 @@ public function listAPI()
             $user->email = $req->email;
             $user->password = Hash::make($req->password);
             $user->rol = 'doctor';
-            $user->save();
+            $user->save();  
+            Log::info('Doctor agregado.');
+            
         }
         
         $doctor->nombre = $req->nombre;
@@ -102,7 +105,7 @@ public function listAPI()
     {
         $doctor = Doctor::find($req->id);
         $doctor->delete();
-
+        Log::info('Doctor eliminado.');
         return redirect()->route('doctores');
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Medicamentos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class MedicamentosController extends Controller
 {
@@ -46,6 +48,7 @@ class MedicamentosController extends Controller
         $medicamento->fecha_caducidad = $req->fecha_caducidad;
         $medicamento->existecia = $req->existencia;
         $medicamento->save();
+        Log::info('Medicamentos agregados.');
 
         return redirect()->route('medicamentos');
     }
@@ -54,6 +57,7 @@ class MedicamentosController extends Controller
     {
         $medicamento = Medicamentos::find($req->id);
         $medicamento->delete();
+        Log::info('Medicamentos eliminados.');
 
         return redirect()->route('medicamentos');
     }

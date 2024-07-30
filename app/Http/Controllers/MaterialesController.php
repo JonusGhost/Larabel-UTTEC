@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Materiales;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MaterialesController extends Controller
 {
@@ -46,6 +47,7 @@ class MaterialesController extends Controller
         $material->fecha_caducidad = $req->fecha_caducidad;
         $material->existecia = $req->existencia;
         $material->save();
+        Log::info('Materiales agregados.');
 
         return redirect()->route('materiales');
     }
@@ -54,6 +56,7 @@ class MaterialesController extends Controller
     {
         $material = Materiales::find($req->id);
         $material->delete();
+        Log::info('Materiales eliminados.');
 
         return redirect()->route('materiales');
     }
