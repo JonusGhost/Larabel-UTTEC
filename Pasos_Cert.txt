@@ -1,0 +1,35 @@
+Nota apagar apache antes de configurar
+
+Paso 1 Meter la llave y el certificado aqui
+- C:/xampp/apache/conf/ssl.key/localhost.key
+- C:/xampp/apache/conf/ssl.crt/localhost.crt
+
+Paso 2 Configuracion apache
+Archivo: C:/xampp/apache/conf/extra/httpd-ssl.conf
+
+- SSLEngine on
+- SSLCertificateFile "C:/xampp/apache/conf/ssl.crt/localhost.crt"
+- SSLCertificateKeyFile "C:/xampp/apache/conf/ssl.key/localhost.key"
+
+Archivo: C:/xampp/apache/conf/extra/httpd-vhosts.conf
+
+- <VirtualHost *:443>
+-     DocumentRoot "C:/path/to/your/laravel/public"
+-     ServerName localhost
+-     SSLEngine on
+-     SSLCertificateFile "C:/xampp/apache/conf/ssl.crt/localhost.crt"
+-     SSLCertificateKeyFile "C:/xampp/apache/conf/ssl.key/localhost.key"
+-     <Directory "C:/path/to/your/laravel/public">
+-         AllowOverride All
+-         Require all granted
+-     </Directory>
+- </VirtualHost>
+
+Paso 3 Configurar host (En caso de que no est configurado)
+En el archivo: C:/Windows/System32/drivers/etc/hosts
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+
+Paso 4 Reiniciar apache
