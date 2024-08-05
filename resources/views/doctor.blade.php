@@ -22,7 +22,7 @@
                             <label for="nombre">Nombre</label>
                             <input type="text" class="form-control border-primary" id="nombre" value="{{$doctor->nombre}}" name="nombre" placeholder="Doctor" required>
                             <div class="invalid-feedback">
-                                Por favor, ingrese solo palabras sin números.
+                                Por favor, ingrese solo letras.
                             </div>
 
                             <label for="app_pat">Apellidos</label>
@@ -30,13 +30,13 @@
                                 <div class="col">
                                     <input type="text" class="form-control border-primary" id="app_pat" value="{{$doctor->apellido_paterno}}" name="app_pat" placeholder="Paterno" required>
                                     <div class="invalid-feedback">
-                                        Por favor, ingrese solo palabras sin números.
+                                        Por favor, ingrese solo letras.
                                     </div>
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-primary" id="app_mat" value="{{$doctor->apellido_materno}}" name="app_mat" placeholder="Materno" required>
                                     <div class="invalid-feedback">
-                                        Por favor, ingrese solo palabras sin números.
+                                        Por favor, ingrese solo letras.
                                     </div>
                                 </div>
                             </div>
@@ -63,14 +63,14 @@
                                     <label for="cedula">Cédula</label>
                                     <input type="text" class="form-control border-primary" id="cedula" value="{{$doctor->cedula}}" name="cedula" placeholder="Cédula" required>
                                     <div class="invalid-feedback">
-                                        Por favor, ingrese solo números sin palabras.
+                                        Por favor, ingrese solo números.
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="telefono">Teléfono</label>
                                     <input type="number" class="form-control border-primary" id="telefono" value="{{$doctor->telefono}}" name="telefono" placeholder="00 0000 0000" required>
                                     <div class="invalid-feedback">
-                                        Por favor, ingrese solo números sin palabras.
+                                        Por favor, ingrese solo números.
                                     </div>
                                 </div>
                             </div>
@@ -90,37 +90,25 @@
 </div>
 
 <script>
-    document.getElementById('nombre').addEventListener('input', function (event) {
-        let value = event.target.value;
-        if (/\d/.test(value)) {
-            event.target.value = value.replace(/\d/g, '');
-        }
-    });
-    document.getElementById('app_pat').addEventListener('input', function (event) {
-        let value = event.target.value;
-        if (/\d/.test(value)) {
-            event.target.value = value.replace(/\d/g, '');
-        }
-    });
-    document.getElementById('app_mat').addEventListener('input', function (event) {
-        let value = event.target.value;
-        if (/\d/.test(value)) {
-            event.target.value = value.replace(/\d/g, '');
-        }
-    });
+    function restrictInputToLettersOnly(elementId) {
+        document.getElementById(elementId).addEventListener('input', function (event) {
+            let value = event.target.value;
+            event.target.value = value.replace(/[^a-zA-Z\s]/g, '');
+        });
+    }
 
-    document.getElementById('cedula').addEventListener('input', function (event) {
-        let value = event.target.value;
-        if (/[a-zA-Z]/.test(value)) {
-            event.target.value = value.replace(/[a-zA-Z]/g, '');
-        }
-    });
-    document.getElementById('telefono').addEventListener('input', function (event) {
-        let value = event.target.value;
-        if (/[a-zA-Z]/.test(value)) {
-            event.target.value = value.replace(/[a-zA-Z]/g, '');
-        }
-    });
+    function restrictInputToNumbersOnly(elementId) {
+        document.getElementById(elementId).addEventListener('input', function (event) {
+            let value = event.target.value;
+            event.target.value = value.replace(/[^0-9]/g, '');
+        });
+    }
+
+    restrictInputToLettersOnly('nombre');
+    restrictInputToLettersOnly('app_pat');
+    restrictInputToLettersOnly('app_mat');
+    restrictInputToNumbersOnly('cedula');
+    restrictInputToNumbersOnly('telefono');
 
     (function () {
         'use strict';
