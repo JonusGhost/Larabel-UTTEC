@@ -119,7 +119,7 @@
                             <a href="{{ route('register') }}" class="btn">Register</a>
                         @endif
                     @endauth
-                    <a href="{{ url('/auth/redirect') }}" class="btn-google">
+                    <a href="{{ url('/auth/redirect') }}" class="btn">
         <img src="{{ asset('images/imgGoogle.png') }}" alt="Google Logo" class="google-logo">
         Iniciar sesión con Google
     </a>
