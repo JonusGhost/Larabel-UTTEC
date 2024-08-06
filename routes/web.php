@@ -10,6 +10,7 @@ use App\Http\Controllers\MedicamentosController;
 use App\Http\Controllers\PacientesController;
 use App\Models\Especialidad;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LogController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +21,9 @@ Route::get('/', function () {
 Route::get('/hola',[HelloController::class,'index']);
 
 Auth::routes();
+
+//RUTA DE LOGS
+Route::get('/logs', [LogController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
