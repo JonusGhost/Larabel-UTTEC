@@ -11,6 +11,7 @@ use App\Http\Controllers\PacientesController;
 use App\Models\Especialidad;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogController;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return view('welcome');
@@ -96,3 +97,14 @@ Route::get('cita/atender',[CitaController::class, 'indatender'])->name('atender.
 Route::post('cita/atendida',[CitaController::class, 'atender'])->name('atendida.cita')->middleware('auth');
 
 Route::get('/privacy', function () {return view('privacy');})->name('privacy');
+
+//0Auth
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/auth/google/callback', function () {
+    $user = Socialite::driver('google')->user();
+    
+   //Logica para manejar al usuario
+});
