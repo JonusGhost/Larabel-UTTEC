@@ -48,5 +48,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('view.cita', function (User $user){
             return $user->rol == 'doctor' || $user->rol == '';
         });
+
+        Gate::define('view.0auth', function (User $user){
+            return $user->rol == '';
+        });
     }
 }

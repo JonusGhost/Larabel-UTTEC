@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\ConsultoriosController;
 use App\Http\Controllers\DoctorController;
@@ -95,6 +96,8 @@ Route::post('cita/doctor',[CitaController::class, 'asignar'])->name('doctor.cita
 Route::get('cita/atender',[CitaController::class, 'indatender'])->name('atender.cita')->middleware('auth');
 
 Route::post('cita/atendida',[CitaController::class, 'atender'])->name('atendida.cita')->middleware('auth');
+
+Route::get('0auth',[AuthController::class, 'index'])->name('0auths')->middleware('auth');
 
 Route::get('/privacy', function () {return view('privacy');})->name('privacy');
 

@@ -297,39 +297,29 @@ return [
         ['header' => 'Opciones'],
    
         [
-            'text' => 'especialidades',
+            'text' => 'Administracion',
             'icon' => 'fas fa-fw fa-share',
-            'can' => 'view.especialidades',
+            'can' => 'view.0auth',
             'submenu' => [
                 [
-                    'text' => 'lista',
-                    'route' => 'especialidades',
-                ],
-                 [
-                    'text' => 'nuevo',
-                    'route' => 'nueva.especialidad',
-                ],
-
+                    'text' => 'logs',
+                    'route' => '0auths',
+                ]
             ],
         ],
         [
-            'text' => 'doctores',
+            'text' => 'Citas',
             'icon' => 'fas fa-fw fa-share',
-            'can' => 'view.doctores',
+            'can' => 'view.cita',
             'submenu' => [
                 [
                     'text' => 'lista',
-                    'route' => 'doctores',
-                ],
-                 [
-                    'text' => 'nuevo',
-                    'route' => 'nueva.doctor',
-                ],
-
+                    'route' => 'citas',
+                ]
             ],
         ],
         [
-            'text' => 'consultorios',
+            'text' => 'Consultorios',
             'icon' => 'fas fa-fw fa-share',
             'can' => 'view.consultorios',
             'submenu' => [
@@ -345,39 +335,39 @@ return [
             ],
         ],
         [
-            'text' => 'paciente',
+            'text' => 'Doctores',
             'icon' => 'fas fa-fw fa-share',
-            'can' => 'view.pacientes',
+            'can' => 'view.doctores',
             'submenu' => [
                 [
                     'text' => 'lista',
-                    'route' => 'pacientes',
+                    'route' => 'doctores',
                 ],
                  [
                     'text' => 'nuevo',
-                    'route' => 'nuevo.paciente',
+                    'route' => 'nueva.doctor',
                 ],
 
             ],
         ],
         [
-            'text' => 'medicamentos',
+            'text' => 'Especialidades',
             'icon' => 'fas fa-fw fa-share',
-            'can' => 'view.medicamentos',
+            'can' => 'view.especialidades',
             'submenu' => [
                 [
                     'text' => 'lista',
-                    'route' => 'medicamentos',
+                    'route' => 'especialidades',
                 ],
                  [
                     'text' => 'nuevo',
-                    'route' => 'nuevo.medicamento',
+                    'route' => 'nueva.especialidad',
                 ],
 
             ],
         ],
         [
-            'text' => 'material',
+            'text' => 'Material',
             'icon' => 'fas fa-fw fa-share',
             'can' => 'view.material',
             'submenu' => [
@@ -393,14 +383,31 @@ return [
             ],
         ],
         [
-            'text' => 'citas',
+            'text' => 'Medicamentos',
             'icon' => 'fas fa-fw fa-share',
-            'can' => 'view.cita',
+            'can' => 'view.medicamentos',
             'submenu' => [
                 [
                     'text' => 'lista',
-                    'route' => 'citas',
-                ]
+                    'route' => 'medicamentos',
+                ],
+                 [
+                    'text' => 'nuevo',
+                    'route' => 'nuevo.medicamento',
+                ],
+
+            ],
+        ],
+        [
+            'text' => 'Pacientes',
+            'icon' => 'fas fa-fw fa-share',
+            'can' => 'view.pacientes',
+            'submenu' => [
+                [
+                    'text' => 'lista',
+                    'route' => 'pacientes',
+                ],
+
             ],
         ],
     ],
