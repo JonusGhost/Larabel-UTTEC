@@ -94,3 +94,5 @@ Route::post('cita/doctor',[CitaController::class, 'asignar'])->name('doctor.cita
 Route::get('cita/atender',[CitaController::class, 'indatender'])->name('atender.cita')->middleware('auth');
 
 Route::post('cita/atendida',[CitaController::class, 'atender'])->name('atendida.cita')->middleware('auth');
+
+Route::get('/privacy', function () {return view('privacy');})->name('privacy');

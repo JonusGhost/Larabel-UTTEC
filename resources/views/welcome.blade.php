@@ -152,6 +152,8 @@
 
     <footer class="footer">
         <p>&copy; 2024 Hospital Lindas Sonrisas. Todos los derechos reservados.</p>
-    </footer>
+        <p><a href="{{ route('privacy') }}" style="color: red;">Políticas de Privacidad</a></p>
+
 </body>
+
 </html>
