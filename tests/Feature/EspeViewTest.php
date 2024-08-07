@@ -11,8 +11,12 @@ class EspeViewTest extends TestCase
 {
     use RefreshDatabase;
 
-    
-    public function una_sola_especialidad_se_visualiza()
+    /**
+     * Verifica que una sola especialidad se visualiza correctamente.
+     *
+     * @return void
+     */
+    public function test_una_sola_especialidad_se_visualiza()
     {
         $user = User::factory()->create(); 
         $especialidad = Especialidad::factory()->create();
@@ -24,8 +28,12 @@ class EspeViewTest extends TestCase
                  ->assertViewHas('especialidad', $especialidad);
     }
 
-
-    public function todas_las_especialidades_se_visualizan()
+    /**
+     * Verifica que todas las especialidades se visualizan correctamente.
+     *
+     * @return void
+     */
+    public function test_todas_las_especialidades_se_visualizan()
     {
         $user = User::factory()->create(); 
         $especialidades = Especialidad::factory()->count(3)->create();
