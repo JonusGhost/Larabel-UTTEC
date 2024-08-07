@@ -17,6 +17,7 @@ class ConsultoriosController extends Controller
         else
         {
             $consultorio = new Consultorios();
+            Log::info('Consultorio editado.');
         }
 
         return view('consultorio', compact('consultorio'));
@@ -44,11 +45,12 @@ public function listAPI()
         else
         {
             $consultorio = new Consultorios();
+            Log::info('Consultorio agregado.');
         }
 
         $consultorio->numero = $req->numero;
         $consultorio->save();
-        Log::info('Consultorio agregado.');
+        
         
 
         return redirect()->route('consultorios');
@@ -57,9 +59,10 @@ public function listAPI()
     public function delete (Request $req)
     {
         $consultorio = Consultorios::find($req->id);
+        Log::info('Consultorio eliminado.');
         $consultorio->delete();
 
         return redirect()->route('consultorios');
-        Log::info('Consultorio eliminado.');
+        
     }
 }

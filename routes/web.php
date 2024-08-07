@@ -25,7 +25,7 @@ Route::get('/hola',[HelloController::class,'index']);
 Auth::routes();
 
 //RUTA DE LOGS
-Route::get('/logs', [LogController::class, 'index']);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

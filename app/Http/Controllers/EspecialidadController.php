@@ -18,6 +18,7 @@ class EspecialidadController extends Controller
         else
         {
             $especialidad = new Especialidad();
+            Log::info('Especialidad editada.');
         }
 
         return view('especialidad', compact('especialidad'));
@@ -50,12 +51,13 @@ class EspecialidadController extends Controller
         else
         {
             $especialidad = new Especialidad();
+            Log::info('Especialidad agregada.');
         }
         
         $especialidad->nombre = $req->nombre;
         $especialidad->estado = true;
         $especialidad->save();
-        Log::info('Especialidad agregada.');
+        
 
         return redirect()->route('especialidades');
     }
@@ -81,8 +83,9 @@ class EspecialidadController extends Controller
     public function delete (Request $req)
     {
         $especialidad = Especialidad::find($req->id);
+        Log::info('Especialidad eliminada.');
         $especialidad->delete();
-
+        
         return redirect()->route('especialidades');
     }
 

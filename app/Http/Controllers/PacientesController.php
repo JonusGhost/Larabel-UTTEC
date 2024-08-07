@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pacientes;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 
 class PacientesController extends Controller
 {
@@ -40,6 +40,7 @@ class PacientesController extends Controller
         else
         {
             $paciente = new Pacientes();
+            Log::info('Paciente agregado.');
         }
 
         $paciente->nombre = $req->nombre;
@@ -53,6 +54,7 @@ class PacientesController extends Controller
     public function delete (Request $req)
     {
         $paciente = Pacientes::find($req->id);
+        Log::info('Paciente eliminado.');
         $paciente->delete();
 
         return redirect()->route('pacientes');

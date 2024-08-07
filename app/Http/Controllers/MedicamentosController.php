@@ -18,6 +18,7 @@ class MedicamentosController extends Controller
         else
         {
             $medicamento = new Medicamentos();
+            Log::info('Medicamento editado.');
         }
 
         return view('medicamento', compact('medicamento'));
@@ -40,6 +41,7 @@ class MedicamentosController extends Controller
         else
         {
             $medicamento = new Medicamentos();
+            Log::info('Medicamento agregado.');
         }
 
         $medicamento->codigo = $req->codigo;
@@ -48,7 +50,7 @@ class MedicamentosController extends Controller
         $medicamento->fecha_caducidad = $req->fecha_caducidad;
         $medicamento->existecia = $req->existencia;
         $medicamento->save();
-        Log::info('Medicamentos agregados.');
+        
 
         return redirect()->route('medicamentos');
     }
@@ -56,8 +58,9 @@ class MedicamentosController extends Controller
     public function delete (Request $req)
     {
         $medicamento = Medicamentos::find($req->id);
-        $medicamento->delete();
         Log::info('Medicamentos eliminados.');
+        $medicamento->delete();
+        
 
         return redirect()->route('medicamentos');
     }

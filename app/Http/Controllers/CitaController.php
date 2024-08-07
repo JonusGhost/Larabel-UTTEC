@@ -41,6 +41,8 @@ class CitaController extends Controller
         else
         {
             $cita = new Cita();
+            Log::info('Cita agregada.');
+
         }
 
         $doctor = Doctor::all();
@@ -83,6 +85,8 @@ class CitaController extends Controller
         else
         {
             $cita = new Cita();
+            Log::info('Cita agregada.');
+
         }
         
         $cita->id_paciente       = $req->pac_id;
@@ -94,17 +98,18 @@ class CitaController extends Controller
         $cita->id_doctor         = $req->doc_id;
         $cita->id_especialidad   = $req->esp_id;
         $cita->save();
-        Log::info('Cita agregada.');
+        
         return 'Ok';
     }
 
     public function delete (Request $req)
     {
         $cita = Cita::find($req->id);
+        Log::info('Cita eliminada.');
         $cita->delete();
 
         return redirect()->route('cita');
-        Log::info('Cita eliminada.');
+       
         
     }
 
@@ -112,6 +117,7 @@ class CitaController extends Controller
     {
         $cita = Cita::find($req->id);
         $cita->delete();
+        Log::info('Cita eliminada.');
 
         return 'Ok, Eliminada';
     }
@@ -125,9 +131,11 @@ class CitaController extends Controller
         else
         {
             $cita = new Cita();
+            Log::info('Cita aceptada.');
         }
         
         $cita->estado            = 'Aceptada';
+        Log::info('Cita aceptada.');
         $cita->id_doctor         = NULL;
         $cita->id_consultorio    = NULL;
         $cita->save();
@@ -147,6 +155,7 @@ class CitaController extends Controller
         }
         
         $cita->estado            = 'Denegada';
+        Log::info('Cita denegada.');
         $cita->id_doctor         = NULL;
         $cita->id_consultorio    = NULL;
         $cita->save();
@@ -163,6 +172,7 @@ class CitaController extends Controller
         else
         {
             $cita = new Cita();
+            
         }
         
         $cita->id_doctor            = $req->id_doctor;

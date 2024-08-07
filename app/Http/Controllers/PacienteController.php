@@ -6,7 +6,7 @@ use App\Models\Paciente;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Log;
 
 class PacienteController extends Controller
 {
@@ -39,6 +39,7 @@ class PacienteController extends Controller
         $user->save();
 
         $paciente = new Paciente();
+        Log::info('Paciente agregado.');
         $paciente->nombre = $req->nombre;
         $paciente->apellido_paterno = $req->app_pat;
         $paciente->apellido_materno = $req->app_mat;

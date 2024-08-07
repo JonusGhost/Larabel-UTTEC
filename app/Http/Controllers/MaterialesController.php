@@ -17,6 +17,7 @@ class MaterialesController extends Controller
         else
         {
             $material = new Materiales();
+            Log::info('Material editado.');
         }
 
         return view('material', compact('material'));
@@ -39,6 +40,7 @@ class MaterialesController extends Controller
         else
         {
             $material = new Materiales();
+            Log::info('Materiales agregados.');
         }
 
         $material->codigo = $req->codigo;
@@ -47,7 +49,7 @@ class MaterialesController extends Controller
         $material->fecha_caducidad = $req->fecha_caducidad;
         $material->existecia = $req->existencia;
         $material->save();
-        Log::info('Materiales agregados.');
+        
 
         return redirect()->route('materiales');
     }
@@ -55,8 +57,9 @@ class MaterialesController extends Controller
     public function delete (Request $req)
     {
         $material = Materiales::find($req->id);
-        $material->delete();
         Log::info('Materiales eliminados.');
+        $material->delete();
+        
 
         return redirect()->route('materiales');
     }

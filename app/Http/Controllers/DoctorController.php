@@ -20,6 +20,7 @@ class DoctorController extends Controller
         else
         {
             $doctor = new Doctor();
+            Log::info('Doctor editado.');
         }
 
         $especialidades = Especialidad::all();
@@ -57,8 +58,9 @@ public function listAPI()
             $user->email = $req->email;
             $user->password = Hash::make($req->password);
             $user->rol = 'doctor';
-            $user->save();  
             Log::info('Doctor agregado.');
+            $user->save();  
+            
             
         }
         
@@ -83,6 +85,7 @@ public function listAPI()
         else
         {
             $doctor = new Doctor();
+            Log::info('Doctor agregado.');
         }
         
         $doctor->nombre = $req->nombre;
@@ -104,8 +107,9 @@ public function listAPI()
     public function delete (Request $req)
     {
         $doctor = Doctor::find($req->id);
-        $doctor->delete();
         Log::info('Doctor eliminado.');
+        $doctor->delete();
+       
         return redirect()->route('doctores');
     }
 
