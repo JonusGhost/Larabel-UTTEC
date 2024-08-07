@@ -75,8 +75,17 @@
                                 </div>
                             </div>
 
+                            @php $doc_email = ''; @endphp
+                            @php $doc_passw = ''; @endphp
+                            @foreach ($users as $user)
+                                @if ($user->id == $doctor->idusr)
+                                    @php $doc_email = $user->email; @endphp 
+                                    @php $doc_passw = $user->password; @endphp 
+                                @endif
+                            @endforeach
+
                             <label for="email">Correo</label>
-                            <input type="email" class="form-control border-primary" id="email" value="" name="email" placeholder="correo@gmail.com" required>
+                            <input type="email" class="form-control border-primary" id="email" value="{{$doc_email}}" name="email" placeholder="correo@gmail.com" required>
 
                             <label for="password">Contraseña</label>
                             <input type="password" class="form-control border-primary" id="password" value="" name="password" placeholder="********" required>

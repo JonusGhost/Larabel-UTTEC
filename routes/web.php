@@ -39,6 +39,8 @@ Route::post('especialidad/borrar', [EspecialidadController::class,'delete'])->na
 //Doctor
 Route::get('doctor/nueva',[DoctorController::class, 'index'])->name('nueva.doctor')->middleware('auth');
 
+Route::get('doctor/editar/{id}',[DoctorController::class, 'list'])->name('doctores')->middleware('auth');
+
 Route::get('doctores',[DoctorController::class, 'list'])->name('doctores')->middleware('auth');
 
 Route::post('doctor/guardar', [DoctorController::class,'save'])->name('guardar.doctor')->middleware('auth');

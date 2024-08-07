@@ -23,47 +23,53 @@ class DoctorController extends Controller
             Log::info('Doctor editado.');
         }
 
+        $users =  User::all();
         $especialidades = Especialidad::all();
-        return view('doctor', compact('doctor','especialidades'));
+        return view('doctor', compact('doctor','especialidades', 'users'));
     }
 
     public function list()
-{
-    $doctores = Doctor::all();
-    $especialidades = Especialidad::all();
-    return view('doctores', compact('doctores', 'especialidades'));
-}
-
-public function listAPI()
-{
-    $doctores = Doctor::all();
-    $especialidades = Especialidad::all();
-    return $doctores;
-    return $especialidades;
-}
-
-
-    public function save (Request $req)
     {
-        if($req->id != 0)
-        {
-            $doctor = Doctor::find($req->id);
-        }
-        else
-        {
-            $doctor = new Doctor();
+        $doctores = Doctor::all();
+        $especialidades = Especialidad::all();
+        $usuarios =  User::all();
+        return view('doctores', compact('doctores', 'especialidades', 'usuarios'));
+    }
 
+    public function listAPI()
+    {
+        $doctores = Doctor::all();
+        $especialidades = Especialidad::all();
+        $users =  User::all();
+        return view('doctores', compact('doctores', 'especialidades', 'users'));
+    }
+
+
+    public function save(Request $req)
+    {
+        if ($req->id != 0) {
+            $doctor = Doctor::find($req->id);
+            if ($doctor) {
+                $user = User::find($doctor->idusr);
+            }
+        } else {
+            $doctor = new Doctor();
             $user = new User();
-            $user->name = $req->nombre;
-            $user->email = $req->email;
-            $user->password = Hash::make($req->password);
             $user->rol = 'doctor';
-            Log::info('Doctor agregado.');
-            $user->save();  
-            
-            
         }
-        
+    
+        if (!$user) {
+            $user = new User();
+            $user->rol = 'doctor';
+        }
+    
+        $user->name = $req->nombre;
+        $user->email = $req->email;
+        if ($req->id == 0 || ($req->password && !empty($req->password))) {
+            $user->password = Hash::make($req->password);
+        }
+        $user->save();
+    
         $doctor->nombre = $req->nombre;
         $doctor->apellido_paterno = $req->app_pat;
         $doctor->apellido_materno = $req->app_mat;
@@ -72,9 +78,12 @@ public function listAPI()
         $doctor->telefono = $req->telefono;
         $doctor->idusr = $user->id;
         $doctor->save();
-
+    
+        Log::info('Doctor ' . ($req->id != 0 ? 'actualizado' : 'agregado') . '.');
+    
         return redirect()->route('doctores');
     }
+    
 
     public function saveAPI (Request $req)
     {

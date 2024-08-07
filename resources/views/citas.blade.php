@@ -54,6 +54,12 @@
                                             
                                                 @if ($cita->estado == 'Denegada')
                                                     <td>Denegada</td>
+                                                    @php $doc_espe = 'Sin especialidad'; @endphp
+                                                    @foreach ($especialidades as $especialidad)
+                                                        @if ($especialidad->id == $cita->id_especialidad)
+                                                            @php $doc_espe = $especialidad->nombre; @endphp 
+                                                        @endif
+                                                    @endforeach
                                                     <td>{{ $doc_espe }}</td>
                                                     <td>{{ $cita->estado }}</td>
                                                     <td>Denegada</td>

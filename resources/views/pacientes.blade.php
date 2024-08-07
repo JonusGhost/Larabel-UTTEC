@@ -41,7 +41,6 @@
                                         <td>{{ $paciente->telefono }}</td>
                                         
                                         <td>
-                                            <a href="{{ route('nuevo.paciente', ['id' => $paciente->id]) }}" class="btn btn-primary">Editar</a>
                                             
                                             <form action="{{ route('borrar.paciente') }}" method="POST" style="display:inline-block;">
                                                 @csrf
